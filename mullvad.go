@@ -1,4 +1,4 @@
-package mullvad
+package mullgo
 
 type Client struct {
 	// AccountNumber is the mullvad account number to use.

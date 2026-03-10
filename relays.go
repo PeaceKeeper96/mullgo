@@ -1,4 +1,4 @@
-package mullvad
+package mullgo
 
 import (
 	"encoding/json"

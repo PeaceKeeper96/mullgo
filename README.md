@@ -9,7 +9,7 @@ package main
 
 import (
 	"fmt"
-	mullvad "mullgo"
+	mullvad "github.com/PeaceKeeper96/mullgo"
 )
 
 func main() {
