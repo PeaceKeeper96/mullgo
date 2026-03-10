@@ -5,14 +5,12 @@ import (
 	"golang.zx2c4.com/wireguard/wgctrl/wgtypes"
 )
 
-
-func Keygen() (Pubkey, privkey string) {
-	fmt.Println("\nKeygen")
+// wireguard key generation
+func Keygen() (pubkey string, privkey string, error error) {
 	key, err := wgtypes.GeneratePrivateKey()
 	if err != nil {
-		return
+		return "", "", fmt.Errorf("Keygen: failed to mgenerate privatekey: %w", err)
 	}
 
-	return key.String(), key.PublicKey().String()
+	return key.PublicKey().String(), key.String(), nil
 }
-// wireguard key generation
