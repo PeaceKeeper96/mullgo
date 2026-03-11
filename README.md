@@ -9,41 +9,41 @@ package main
 
 import (
 	"fmt"
-	mullvad "github.com/PeaceKeeper96/mullgo"
+	mullgo "github.com/PeaceKeeper96/mullgo"
 )
 
 func main() {
-	sampleClient := mullvad.NewClient(
-		"123456789", // Account Number goes here
-		[]string{"ch-zrh", "de-fra"}, // List of locations you want to use
+	sampleClient := mullgo.NewClient(
+		"",
+		[]string{"ch-zrh", "de-fra"},
 	)
 
-	token, _ := mullvad.GetToken(sampleClient.AccountNumber)
+	token, _ := mullgo.GetToken(sampleClient.AccountNumber)
 	fmt.Println("Token: ", token.AccessToken)
 	fmt.Println("Expiry: ", token.Expiry)
 
-	relays, _ := mullvad.GetRelays(token)
-	filteredRelays := mullvad.RelayFilter(*sampleClient, relays)
+	relays, _ := mullgo.GetRelays(token)
+	filteredRelays := mullgo.RelayFilter(*sampleClient, relays)
 	fmt.Println("so back")
 	fmt.Println(filteredRelays)
 
-	pubKey, privKey, _ := mullvad.Keygen()
+	pubKey, privKey, _ := mullgo.Keygen()
 	fmt.Println("PubKey: ", pubKey)
 	fmt.Println("PrivKey: ", privKey)
 
-	keyCode, err := mullvad.AddKey(token, pubKey)
+	keyCode, err := mullgo.AddKey(token, pubKey)
 	fmt.Println(keyCode, err)
 
-	devices, _ := mullvad.GetDevices(token)
+	devices, _ := mullgo.GetDevices(token)
 	fmt.Println("Devices: ", devices)
 
-	device, _ := mullvad.GetDevicebyPubkey(devices, devices[0].Pubkey)
+	device, _ := mullgo.GetDevicebyPubkey(devices, devices[0].Pubkey)
 	fmt.Println("\n", device)
 
-	removeCode, _ := mullvad.RemoveDevice(token, device.ID)
+	removeCode, _ := mullgo.RemoveDevice(token, device.ID)
 	fmt.Println("\nIf removed, you will see 200: ", removeCode)
 
-	accountInfo, _ := mullvad.GetAccountInfo(token)
+	accountInfo, _ := mullgo.GetAccountInfo(token)
 	fmt.Println("\nAccount Info: ", accountInfo)
 }
 ```
